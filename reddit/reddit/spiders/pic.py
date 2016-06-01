@@ -3,7 +3,8 @@ import scrapy
 
 # crawl spider is better
 
-from scrapy.contrib.spiders import CrawlSpider
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
 
 
 class PicSpider(CrawlSpider):
@@ -12,6 +13,9 @@ class PicSpider(CrawlSpider):
     start_urls = (
         'http://www.reddit.com/r/pics/',
     )
+    rules = [
+        Rule(LinkExtractor(allow=['.*']))
+    ]
 
     def parse(self, response):
         pass
